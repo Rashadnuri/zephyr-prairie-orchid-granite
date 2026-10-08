@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3efe6;
+  --color-paper-deep: #e6dece;
+  --color-card: #fbf8f2;
+  --color-ink: #1c2824;
+  --color-muted: #5c6a63;
+  --color-line: #e0d6c6;
+  --color-accent: #0e6b52;
+  --color-accent-strong: #0b3d32;
+  --color-on-accent: #f4faf7;
+  --color-ocean: #d5e3df;
+  --color-nodata: #e5ddd0;
+  --color-ramp-1: #d9f0e4;
+  --color-ramp-2: #a4d6c0;
+  --color-ramp-3: #4eae8c;
+  --color-ramp-4: #1a7a5c;
+  --color-ramp-5: #0c3f32;
+  --font-sans: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, serif;
+  --shadow-float: 0 14px 36px rgb(28 40 36 / 0.14);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper-deep);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+.ocean {
+  fill: var(--color-ocean);
+}
+
+.graticule {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  stroke-width: 0.7px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+.sphere-edge {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-ink) 28%, transparent);
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+.land {
+  fill: var(--color-nodata);
+  stroke: color-mix(in srgb, var(--color-card) 80%, var(--color-ink));
+  stroke-width: 0.6px;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition:
+    fill 280ms ease,
+    stroke 160ms ease;
+}
+
+.land[data-bin="1"] {
+  fill: var(--color-ramp-1);
+}
+.land[data-bin="2"] {
+  fill: var(--color-ramp-2);
+}
+.land[data-bin="3"] {
+  fill: var(--color-ramp-3);
+}
+.land[data-bin="4"] {
+  fill: var(--color-ramp-4);
+}
+.land[data-bin="5"] {
+  fill: var(--color-ramp-5);
+}
+
+.land.is-hot,
+.land.is-selected,
+.land:focus-visible {
+  stroke: var(--color-ink);
+  stroke-width: 1.8px;
+  outline: none;
+}
+
+.swatch {
+  background: var(--color-nodata);
+}
+.swatch[data-bin="1"] {
+  background: var(--color-ramp-1);
+}
+.swatch[data-bin="2"] {
+  background: var(--color-ramp-2);
+}
+.swatch[data-bin="3"] {
+  background: var(--color-ramp-3);
+}
+.swatch[data-bin="4"] {
+  background: var(--color-ramp-4);
+}
+.swatch[data-bin="5"] {
+  background: var(--color-ramp-5);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .land {
+    transition: none;
+  }
+}

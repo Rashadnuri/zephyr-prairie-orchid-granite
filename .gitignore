@@ -1,0 +1,17 @@
+node_modules
+dist
+.output
+.vercel
+.nitro
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.project_id
+.node_modules.lock
+artifacts
+screenshots
+coverage
+.grok
+xeritexana.zip
